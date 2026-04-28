@@ -10,4 +10,4 @@ FROM ubuntu:22.04
 WORKDIR /app
 COPY --from=builder /app/build/gateway .
 EXPOSE 9001
-CMD ["./gateway","--port","9001"]
+CMD ["./gateway", "--port","9001"]
