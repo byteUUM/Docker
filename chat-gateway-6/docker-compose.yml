@@ -1,0 +1,29 @@
+services:
+  gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9001:9001"
+    environment:
+      SERVER_HOST: "9001"
+      RIDES_HOST: redis
+      RIDES_PORT: "6379"
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - backend-net
+  redis:
+    image: redis:7-alpine
+    networks:
+      - backend-net
+    healthcheck:
+      test: ["CMD","redis-cli","ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+networks:
+  backend-net:
+    driver: bridge
