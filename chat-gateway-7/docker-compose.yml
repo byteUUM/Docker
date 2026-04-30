@@ -1,0 +1,11 @@
+services:
+  gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - gateway.env
+    ports:
+      - "9001:9001"
+    volumes:
+      - ./config/gateway.conf:/app/config/gateway.conf:ro

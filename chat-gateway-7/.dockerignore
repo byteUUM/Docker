@@ -1,0 +1,6 @@
+logs/
+.git/
+.vscode/
+build/
+gateway.env
+README.md
